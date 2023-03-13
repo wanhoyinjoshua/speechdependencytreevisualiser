@@ -4,16 +4,20 @@
 # Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
 
 
-#import spacy
-#from spacy import displacy
-#from spacy.matcher import Matcher
-#from spacy import displacy
+import spacy
+
+from spacy import displacy
 from flask import Flask
 app = Flask(__name__)
 
 @app.route('/')
 def hello_world():
-    return 'Hello, World!'
+    textstring="I happy mother boyfriend not happy"
+    nlp = spacy.load("en_core_web_sm")
+    doc = nlp(textstring)
+    html = displacy.render(doc, style='dep', page=True)
+
+    return html
 
 
 
